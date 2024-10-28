@@ -14,10 +14,12 @@ function App() {
     })();
   }, []);
 
-  //initial login flow
-  // 1. useEffect() sets the access token to the result of getAccessToken()
-  // 1a. access token does not exist => show Login component which redirects to "/" after spotify authorization. Then access token exists. Return access token and Profile is shown.
-  // 1b. access token does exist => if access token is expired, renew access token with refresh token => return new access token and show Profile
+  //  App flow on initial start
+  //  1. useEffect() sets the access token to the result of getAccessToken()
+  // 1a. Access token does not exist => show Login component which redirects to "/" after spotify authorization.
+  //     Then access token exists => Return access token => show Profile
+  // 1b. Access token does exist => getAccessToken() checks if existing access token is expired.
+  //     If expired, renew access token with refresh token => return new access token => show Profile
 
   return accessToken ? <Profile /> : <Login />;
 }

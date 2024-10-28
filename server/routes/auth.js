@@ -106,7 +106,12 @@ router.get("/refresh_token", async (req, res) => {
 
   req.session.jwt = jwt.sign(sessionJWTObject, process.env.JWT_SECRET_KEY);
 
-  res.send(response); //send new tokens
+  const newDecodedToken = jwt.verify(
+    req.session.jwt,
+    process.env.JWT_SECRET_KEY
+  );
+
+  res.send(newDecodedToken); //send new decoded jwt
 });
 
 //verify jwt and send decoded json webtoken
