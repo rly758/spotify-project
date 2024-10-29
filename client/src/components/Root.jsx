@@ -8,15 +8,24 @@ function Root() {
         <nav>
           <ul>
             <li>
-              <NavLink to="/element1">Element 1</NavLink>
+              <NavLink to="/profile">Profile</NavLink>
             </li>
             <li>
-              <NavLink to="/element2">Element 2</NavLink>
+              <NavLink to="/artists">Top Artists</NavLink>
+            </li>
+            <li>
+              <NavLink to="/tracks">Top Tracks</NavLink>
+            </li>
+            <li>
+              <NavLink to="/recent">Recent</NavLink>
+            </li>
+            <li>
+              <NavLink to="/playlists">Playlists</NavLink>
             </li>
           </ul>
         </nav>
       </div>
-      <div>
+      <div id="outlet">
         <Outlet />
       </div>
     </>

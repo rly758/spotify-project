@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "../styles/App.css";
 import { getAccessToken } from "../spotify";
 import Root from "./Root";
 import Login from "./Login";
 import ErrorPage from "./ErrorPage";
 import Index from "./Index";
-import Element1 from "./Element1";
-import Element2 from "./Element2";
+import Profile from "./Profile";
+import RecentlyPlayed from "./RecentlyPlayed";
+import TopArtists from "./TopArtists";
+import TopTracks from "./TopTracks";
+import Playlists from "./Playlists";
+import Playlist from "./Playlist";
+
+import "../styles/App.css";
 
 const router = createBrowserRouter([
   {
@@ -20,15 +25,39 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Index />,
+            element: <Index />, //maybe make profile into the index?
           },
           {
-            path: "/element1",
-            element: <Element1 />,
+            path: "/profile",
+            element: <Profile />, //user profile info
           },
           {
-            path: "/element2",
-            element: <Element2 />,
+            path: "/artists",
+            element: <TopArtists />, //top artists listened to
+          },
+          {
+            path: "/artist/:artistId",
+            element: <Artist />, //see info about an artist
+          },
+          {
+            path: "/tracks",
+            element: <TopTracks />, //top tracks listened to
+          },
+          {
+            path: "/track/:trackId",
+            element: <Track />, //see info about a track
+          },
+          {
+            path: "/recent",
+            element: <RecentlyPlayed />, //recently played tracks
+          },
+          {
+            path: "/playlists",
+            element: <Playlists />, //a list of user's playlists
+          },
+          {
+            path: "/playlist/:playlistId",
+            element: <Playlist />, //see tracks within a playlist
           },
         ],
       },
