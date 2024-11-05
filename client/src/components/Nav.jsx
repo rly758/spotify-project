@@ -1,29 +1,60 @@
 import { NavLink } from "react-router-dom";
 
-import "../styles/Nav.scss";
+import IconSpotify from "../assets/IconSpotify";
+import IconGithub from "../assets/IconGithub";
+import IconProfile from "../assets/IconProfile";
+import IconMicrophone from "../assets/IconMicrophone";
+import IconTrack from "../assets/IconTrack";
+import IconRecent from "../assets/IconRecent";
+import IconPlaylist from "../assets/IconPlaylist";
+
+import styles from "../styles/Nav.module.scss";
 
 function Nav() {
   return (
     <nav>
-      <div>Spotify Icon</div>
+      <div className={styles.logo}>
+        <NavLink to="/">
+          <IconSpotify />
+        </NavLink>
+      </div>
       <ul>
         <li>
-          <NavLink to="/profile">Profile</NavLink>
+          <NavLink to="/profile">
+            <IconProfile />
+            <div>Profile</div>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/artists">Top Artists</NavLink>
+          <NavLink to="/artists">
+            <IconMicrophone />
+            <div>Top Artists</div>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/tracks">Top Tracks</NavLink>
+          <NavLink to="/tracks">
+            <IconTrack />
+            <div>Top Tracks</div>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/recent">Recent</NavLink>
+          <NavLink to="/recent">
+            <IconRecent />
+            <div>Recent</div>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/playlists">Playlists</NavLink>
+          <NavLink to="/playlists">
+            <IconPlaylist />
+            <div>Playlists</div>
+          </NavLink>
         </li>
       </ul>
-      <div>GitHub Icon</div>
+      <div className={styles.github}>
+        <a href="https://github.com/rly758/spotify-project" target="_blank">
+          <IconGithub />
+        </a>
+      </div>
     </nav>
   );
 }
