@@ -1,34 +1,18 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Nav from "./Nav";
+
+import "../styles/Root.scss";
 
 function Root() {
   return (
-    <>
-      <p>You are logged in. This is the root component. </p>
+    <div className="main-container">
       <div id="sidebar">
-        <nav>
-          <ul>
-            <li>
-              <NavLink to="/profile">Profile</NavLink>
-            </li>
-            <li>
-              <NavLink to="/artists">Top Artists</NavLink>
-            </li>
-            <li>
-              <NavLink to="/tracks">Top Tracks</NavLink>
-            </li>
-            <li>
-              <NavLink to="/recent">Recent</NavLink>
-            </li>
-            <li>
-              <NavLink to="/playlists">Playlists</NavLink>
-            </li>
-          </ul>
-        </nav>
+        <Nav />
       </div>
       <div id="outlet">
         <Outlet />
       </div>
-    </>
+    </div>
   );
 }
 
