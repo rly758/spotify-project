@@ -1,8 +1,11 @@
+import "../styles/Login.scss";
+
 function Login() {
   return (
-    <a href="/auth/login">
-      <button>Login to Spotify</button>
-    </a>
+    <div className="login-container">
+      <h1>Spotify Personal Project</h1>
+      <a href="/auth/login">Login to Spotify</a>
+    </div>
   );
 }
 

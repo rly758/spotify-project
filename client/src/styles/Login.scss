@@ -1,0 +1,28 @@
+@use "theme" as *;
+@use "mixins";
+
+.login-container {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  min-height: 100vh;
+  h1 {
+    font-size: $font-size-xxl;
+  }
+}
+
+a {
+  display: inline-block;
+  background-color: $green;
+  color: $white;
+  border-radius: 30px;
+  padding: 17px 35px;
+  margin: 20px 0 70px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+  &:hover,
+  &:focus {
+    background-color: $offGreen;
+  }
+}
