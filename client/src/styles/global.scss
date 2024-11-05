@@ -1,0 +1,98 @@
+@use "theme" as *;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  font-family: $font-stack;
+  font-size: $font-size-base;
+  background-color: $black;
+  color: $white;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+#root {
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.025em;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 900;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+ol,
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: $transition;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+svg {
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+button {
+  display: inline-block;
+  color: $lightestGrey;
+  font-family: $font-stack;
+  font-size: $font-size-base;
+  font-weight: 700;
+  border-radius: 50px;
+  border: 0;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    outline: 0;
+  }
+}

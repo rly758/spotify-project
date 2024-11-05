@@ -6,13 +6,16 @@ import Login from "./Login";
 import ErrorPage from "./ErrorPage";
 import Index from "./Index";
 import Profile from "./Profile";
-import RecentlyPlayed from "./RecentlyPlayed";
 import TopArtists from "./TopArtists";
+import Artist from "./Artist";
 import TopTracks from "./TopTracks";
+import Track from "./Track";
 import Playlists from "./Playlists";
 import Playlist from "./Playlist";
+import RecentlyPlayed from "./RecentlyPlayed";
 
-import "../styles/App.css";
+import "../styles/global.scss";
+import "../styles/App.scss";
 
 const router = createBrowserRouter([
   {
@@ -21,48 +24,47 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        errorElement: <ErrorPage />,
+        errorElement: <ErrorPage />, // >>thrown<< errors from children are caught here and rendered in the outlet
         children: [
           {
             index: true,
             element: <Index />, //maybe make profile into the index?
           },
           {
-            path: "/profile",
+            path: "profile",
             element: <Profile />, //user profile info
           },
           {
-            path: "/artists",
+            path: "artists",
             element: <TopArtists />, //top artists listened to
           },
           {
-            path: "/artist/:artistId",
+            path: "artist/:artistId",
             element: <Artist />, //see info about an artist
           },
           {
-            path: "/tracks",
+            path: "tracks",
             element: <TopTracks />, //top tracks listened to
           },
           {
-            path: "/track/:trackId",
+            path: "track/:trackId",
             element: <Track />, //see info about a track
           },
           {
-            path: "/recent",
+            path: "recent",
             element: <RecentlyPlayed />, //recently played tracks
           },
           {
-            path: "/playlists",
+            path: "playlists",
             element: <Playlists />, //a list of user's playlists
           },
           {
-            path: "/playlist/:playlistId",
+            path: "playlist/:playlistId",
             element: <Playlist />, //see tracks within a playlist
           },
         ],
       },
     ],
-    //
   },
 ]);
 
@@ -83,7 +85,11 @@ function App() {
   // 1b. Access token does exist => getAccessToken() checks if existing access token is expired.
   //     If expired, renew access token with refresh token => return new access token => show router
 
-  return accessToken ? <RouterProvider router={router} /> : <Login />;
+  return (
+    <div className="app-container">
+      {accessToken ? <RouterProvider router={router} /> : <Login />}
+    </div>
+  );
 }
 
 export default App;
