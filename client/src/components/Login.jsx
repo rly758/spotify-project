@@ -1,10 +1,12 @@
-import "../styles/Login.scss";
+import styles from "../styles/Login.module.scss";
 
 function Login() {
   return (
-    <div className="login-container">
+    <div className={styles.container}>
       <h1>Spotify Personal Project</h1>
-      <a href="/auth/login">Login to Spotify</a>
+      <a href="/auth/login" className={styles.btn}>
+        Login to Spotify
+      </a>
     </div>
   );
 }

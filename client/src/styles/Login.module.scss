@@ -1,7 +1,7 @@
 @use "theme" as *;
 @use "mixins";
 
-.login-container {
+.container {
   @include mixins.flexCenter;
   flex-direction: column;
   min-height: 100vh;
@@ -10,7 +10,7 @@
   }
 }
 
-a {
+.btn {
   display: inline-block;
   background-color: $green;
   color: $white;
