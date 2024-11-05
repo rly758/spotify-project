@@ -1,3 +1,6 @@
+@use "theme" as *;
+
 .main-container {
   display: flex;
+  padding-left: $nav-width;
 }
