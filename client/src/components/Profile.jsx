@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { getProfileDetails } from "../spotify";
-import { getUser } from "../spotify";
 
+import TrackItem from "./TrackItem";
 import Loading from "./Loading";
 
 import styles from "../styles/Profile.module.scss";
 import IconProfile from "../assets/IconProfile";
+import { NavLink } from "react-router-dom";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -91,14 +92,46 @@ function Profile() {
                 <h3>Top Artists of All Time</h3>
                 <a>SEE MORE</a>
               </div>
-              <div className={styles.trackList}></div>
+              <div className={styles.list}>
+                {topArtists ? (
+                  <ul>
+                    {topArtists.items.slice(0, 10).map((artist, i) => (
+                      <li key={i}>
+                        <NavLink to={`/artist/${artist.id}`}>
+                          <div className={styles.artistImage}>
+                            <img src={artist.images[2].url}></img>
+                          </div>
+                        </NavLink>
+
+                        <div className={styles.artistName}>
+                          <NavLink to={`/artist/${artist.id}`}>
+                            <p>{artist.name}</p>
+                          </NavLink>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <Loading />
+                )}
+              </div>
             </div>
             <div className={styles.right}>
               <div className={styles.heading}>
                 <h3>Top Tracks of All Time</h3>
                 <a>SEE MORE</a>
               </div>
-              <div className={styles.trackList}></div>
+              <div className={styles.list}>
+                {topTracks ? (
+                  <ul>
+                    {topTracks.items.slice(0, 10).map((track, i) => (
+                      <TrackItem track={track} key={i} />
+                    ))}
+                  </ul>
+                ) : (
+                  <Loading />
+                )}
+              </div>
             </div>
           </div>
         </>
