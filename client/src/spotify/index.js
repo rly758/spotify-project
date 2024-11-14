@@ -1,29 +1,40 @@
 const EXPIRATION_TIME = 60 * 60 * 1000; //1 hour expiration time in milliseconds
 
-let isFetchingToken = false; //this boolean prevents duplicate requests to get the access token or refresh the access token
+//let isFetchingToken = false; //this boolean prevents duplicate requests to get the access token or refresh the access token
 
+let isRefreshingToken = false;
+
+//the problem lies with the current implementation of getAccessToken(). Alternatively, the problem is in the implementation of getUser().
+//Profile component mounts, dismounts, remounts and this calls useEffect twice.
 export async function getAccessToken() {
   let accessToken, timeStamp;
 
-  if (!isFetchingToken) {
+  //console.log("fetching starts");
+  //isFetchingToken = true; //fetch starts
+
+  const body = await fetch("/auth/current_session");
+  const response = await body.json();
+
+  accessToken = response.accessToken; //value is current access token or false if it does not exist
+  timeStamp = response.timeStamp;
+
+  //if access token exists and is expired, refresh the access token
+  if (
+    !isRefreshingToken &&
+    accessToken &&
+    Date.now() - timeStamp >= EXPIRATION_TIME
+  )
     try {
-      isFetchingToken = true; //fetch starts
-
-      const body = await fetch("/auth/current_session");
-      const response = await body.json();
-
-      accessToken = response.accessToken; //value is current access token or false if it does not exist
-      timeStamp = response.timeStamp;
-
-      //if access token exists and is expired, refresh the access token
-      if (accessToken && Date.now() - timeStamp >= EXPIRATION_TIME) {
+      {
+        isRefreshingToken = true;
         console.log("Refreshing access token...");
         accessToken = await refreshAccessToken();
       }
     } finally {
-      isFetchingToken = false; //fetch is done
+      //isFetchingToken = false; //fetch is done
+      isRefreshingToken = false;
+      //console.log("fetching ends");
     }
-  }
 
   return accessToken;
 }
@@ -35,23 +46,36 @@ export async function refreshAccessToken() {
   return response.accessToken; //return only the access token
 }
 
-/* API calls */
-
-const headers = {
-  Authorization: "Bearer" + getAccessToken(),
-};
-
-export async function getProfile() {
-  const body = await fetch("https://api.spotify.com/v1/me", { headers });
+export async function checkAccessToken() {
+  const body = await fetch("/auth/current_session");
   const response = await body.json();
 
+  return response.accessToken ? true : false;
+}
+
+async function getOptions() {
+  const token = await getAccessToken();
+
+  const options = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  return options;
+}
+
+export async function getUser() {
+  const body = await fetch("https://api.spotify.com/v1/me", await getOptions());
+  const response = await body.json();
+  //console.log(response);
   return response;
 }
 
 export async function getFollowing() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/following?type=artist",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -59,9 +83,10 @@ export async function getFollowing() {
 }
 
 export async function getPlaylists() {
-  const body = await fetch("https://api.spotify.com/v1/me/playlists", {
-    headers,
-  });
+  const body = await fetch(
+    "https://api.spotify.com/v1/me/playlists",
+    await getOptions()
+  );
   const response = await body.json();
 
   return response;
@@ -70,7 +95,7 @@ export async function getPlaylists() {
 export async function getTopArtistsShort() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=short_term",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -80,7 +105,7 @@ export async function getTopArtistsShort() {
 export async function getTopArtistsMedium() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=medium_term",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -90,7 +115,7 @@ export async function getTopArtistsMedium() {
 export async function getTopArtistsLong() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/top/artists?limit=50&time_range=long_term",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -100,7 +125,7 @@ export async function getTopArtistsLong() {
 export async function getTopTracksShort() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=short_term",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -110,7 +135,7 @@ export async function getTopTracksShort() {
 export async function getTopTracksMedium() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=medium_term",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -120,7 +145,7 @@ export async function getTopTracksMedium() {
 export async function getTopTracksLong() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/top/tracks?limit=50&time_range=long_term",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -128,22 +153,22 @@ export async function getTopTracksLong() {
 }
 
 export async function getProfileDetails() {
-  const [users, followedArtists, playlists, topArtists, topTracks] =
+  const [user, followedArtists, playlists, topArtists, topTracks] =
     await Promise.all([
-      getProfile(),
+      getUser(),
       getFollowing(),
       getPlaylists(),
       getTopArtistsLong(),
       getTopTracksLong(),
     ]);
 
-  return { users, followedArtists, playlists, topArtists, topTracks };
+  return { user, followedArtists, playlists, topArtists, topTracks };
 }
 
 export async function getRecentlyPlayed() {
   const body = await fetch(
     "https://api.spotify.com/v1/me/player/recently-played",
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -153,7 +178,7 @@ export async function getRecentlyPlayed() {
 export async function getArtist(artistId) {
   const body = await fetch(
     `https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`,
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -163,7 +188,7 @@ export async function getArtist(artistId) {
 export async function getPlaylist(playlistId) {
   const body = await fetch(
     `https://api.spotify.com/v1/playlists/${playlistId}`,
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -173,7 +198,7 @@ export async function getPlaylist(playlistId) {
 export async function getPlaylistTracks(playlistId) {
   const body = await fetch(
     `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
-    { headers }
+    await getOptions()
   );
   const response = await body.json();
 
@@ -181,9 +206,10 @@ export async function getPlaylistTracks(playlistId) {
 }
 
 export async function getTrack(trackId) {
-  const body = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
-    headers,
-  });
+  const body = await fetch(
+    `https://api.spotify.com/v1/tracks/${trackId}`,
+    await getOptions()
+  );
   const response = await body.json();
 
   return response;
