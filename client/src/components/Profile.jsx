@@ -5,6 +5,7 @@ import { getUser } from "../spotify";
 import Loading from "./Loading";
 
 import styles from "../styles/Profile.module.scss";
+import IconProfile from "../assets/IconProfile";
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -50,9 +51,56 @@ function Profile() {
       {user ? (
         <>
           <div className={styles.top}>
-            profile picture, followers, following, playlist counts
+            <div className={styles.avatar}>
+              {user.images[0] ? (
+                <img src={user.images[0].url}></img>
+              ) : (
+                <IconProfile />
+              )}
+            </div>
+            <a
+              className={styles.username}
+              href={user.external_urls.spotify}
+              target="_blank"
+            >
+              <h1>{user.display_name}</h1>
+            </a>
+            <div className={styles.stats}>
+              <div className={styles.stat}>
+                <div className={styles.number}>{user.followers.total}</div>
+                <p>Followers</p>
+              </div>
+              <div className={styles.stat}>
+                <div className={styles.number}>
+                  {followedArtists.artists.total}
+                </div>
+                <p>Following</p>
+              </div>
+              <div className={styles.stat}>
+                <div className={styles.number}>{playlists.total}</div>
+                <p>Playlists</p>
+              </div>
+              <a className={styles.logout} href="/auth/logout">
+                Logout
+              </a>
+            </div>
           </div>
-          <div className={styles.bottom}></div>
+          <div className={styles.bottom}>
+            <div className={styles.left}>
+              <div className={styles.heading}>
+                <h3>Top Artists of All Time</h3>
+                <a>SEE MORE</a>
+              </div>
+              <div className={styles.trackList}></div>
+            </div>
+            <div className={styles.right}>
+              <div className={styles.heading}>
+                <h3>Top Tracks of All Time</h3>
+                <a>SEE MORE</a>
+              </div>
+              <div className={styles.trackList}></div>
+            </div>
+          </div>
         </>
       ) : (
         <Loading />
