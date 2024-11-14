@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { getAccessToken } from "../spotify";
+import { checkAccessToken } from "../spotify";
 import Root from "./Root";
 import Login from "./Login";
 import ErrorPage from "./ErrorPage";
@@ -68,18 +68,11 @@ const router = createBrowserRouter([
   },
 ]);
 
+const isToken = await checkAccessToken(); //check if access token exist
+
 function App() {
-  const [accessToken, setAccessToken] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const token = await getAccessToken();
-      setAccessToken(token);
-    })();
-  }, []);
-
   //  App flow on initial start
-  //  1. useEffect() sets the access token to the result of getAccessToken()
+  //  1. Check for existing access token.
   // 1a. Access token does not exist => show Login component which redirects to "/" after spotify authorization.
   //     Then access token exists => Return access token => show router
   // 1b. Access token does exist => getAccessToken() checks if existing access token is expired.
@@ -87,7 +80,7 @@ function App() {
 
   return (
     <div className="app-container">
-      {accessToken ? <RouterProvider router={router} /> : <Login />}
+      {isToken ? <RouterProvider router={router} /> : <Login />}
     </div>
   );
 }
