@@ -24,15 +24,15 @@ function Profile() {
 
       if (!ignore) {
         setUser(user);
-        console.log(user);
+        //console.log(user);
         setFollowedArtists(followedArtists);
-        console.log(followedArtists);
+        //console.log(followedArtists);
         setPlaylists(playlists);
-        console.log(playlists);
+        //console.log(playlists);
         setTopArtists(topArtists);
-        console.log(topArtists);
+        //console.log(topArtists);
         setTopTracks(topTracks);
-        console.log(topTracks);
+        //console.log(topTracks);
       }
     }
 
@@ -59,32 +59,28 @@ function Profile() {
                 <IconProfile />
               )}
             </div>
-            <a
-              className={styles.username}
-              href={user.external_urls.spotify}
-              target="_blank"
-            >
-              <h1>{user.display_name}</h1>
+            <a href={user.external_urls.spotify} target="_blank">
+              <h1 className={styles.username}>{user.display_name}</h1>
             </a>
             <div className={styles.stats}>
               <div className={styles.stat}>
-                <div className={styles.number}>{user.followers.total}</div>
+                <span className={styles.number}>{user.followers.total}</span>
                 <p>Followers</p>
               </div>
               <div className={styles.stat}>
-                <div className={styles.number}>
+                <span className={styles.number}>
                   {followedArtists.artists.total}
-                </div>
+                </span>
                 <p>Following</p>
               </div>
               <div className={styles.stat}>
-                <div className={styles.number}>{playlists.total}</div>
+                <span className={styles.number}>{playlists.total}</span>
                 <p>Playlists</p>
               </div>
-              <a className={styles.logout} href="/auth/logout">
-                Logout
-              </a>
             </div>
+            <a className={styles.logout} href="/auth/logout">
+              Logout
+            </a>
           </div>
           <div className={styles.bottom}>
             <div className={styles.left}>

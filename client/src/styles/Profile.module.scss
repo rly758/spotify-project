@@ -1,0 +1,158 @@
+@use "mixins";
+@use "theme" as *;
+
+.container {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  color: $lightGrey;
+}
+
+.top {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  position: relative;
+}
+
+.avatar {
+  width: 125px;
+  height: 125px;
+
+  img {
+    border-radius: 100%;
+  }
+
+  svg {
+    border-radius: 100%;
+  }
+}
+
+.username {
+  color: $white;
+  font-size: 35px;
+  font-weight: 700;
+  margin: 15px 0 0;
+  &:hover,
+  &:focus {
+    color: $offGreen;
+  }
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  margin-top: $spacing-sm;
+}
+
+.stat {
+  @include mixins.flexCenter;
+  flex-direction: column;
+
+  > .number {
+    color: $green;
+    font-weight: 700;
+    font-size: $font-size-md;
+  }
+
+  > p {
+    color: $lightGrey;
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: $spacing-xs;
+  }
+}
+
+.logout {
+  background-color: transparent;
+  color: $white;
+  border: 1px solid $white;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: $spacing-sm $spacing-base;
+  font-size: $font-size-xs;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 1px;
+
+  &:hover,
+  &:focus {
+    background-color: $white;
+    color: $black;
+  }
+}
+
+.bottom {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 50px;
+  margin-top: 50px;
+  color: $white;
+}
+
+.heading {
+  @include mixins.flexBetween;
+  margin-bottom: $spacing-xs;
+
+  h3 {
+    color: $white;
+    font-weight: 800;
+  }
+
+  a {
+    display: inline-block;
+    color: $white;
+    font-size: $font-size-xs;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    border: 1px solid $white;
+    border-radius: 30px;
+    padding: $spacing-sm $spacing-base;
+
+    &:hover,
+    &focus {
+      background-color: $white;
+      color: $black;
+    }
+  }
+}
+
+.artistImage {
+  img {
+    width: 50px;
+    min-width: 50px;
+    height: 50px;
+    margin-right: $spacing-base;
+    border-radius: 100%;
+  }
+}
+
+.left {
+  li {
+    display: flex;
+    align-items: center;
+    margin-bottom: $spacing-md;
+    color: $white;
+  }
+}
+
+.artistName {
+  flex-grow: 1;
+  font-weight: 700;
+  font-size: $font-size-base;
+
+  a {
+    &:hover,
+    &:focus {
+      border-bottom: 1px solid $white;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
