@@ -86,7 +86,7 @@ function Profile() {
             <div className={styles.left}>
               <div className={styles.heading}>
                 <h3>Top Artists of All Time</h3>
-                <a>SEE MORE</a>
+                <NavLink to="/artists">See More</NavLink>
               </div>
               <div className={styles.list}>
                 {topArtists ? (
@@ -115,7 +115,7 @@ function Profile() {
             <div className={styles.right}>
               <div className={styles.heading}>
                 <h3>Top Tracks of All Time</h3>
-                <a>SEE MORE</a>
+                <NavLink to="/tracks">See More</NavLink>
               </div>
               <div className={styles.list}>
                 {topTracks ? (
