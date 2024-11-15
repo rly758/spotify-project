@@ -1,38 +1,41 @@
 import styles from "../styles/TrackItem.module.scss";
+import { NavLink } from "react-router-dom";
 
 function TrackItem({ track }) {
   return (
     <li>
-      <div className={styles.container}>
-        <div className={styles.image}>
-          {track.album.images.length && (
-            <img src={track.album.images[2].url}></img>
-          )}
-        </div>
-        <div className={styles.details}>
-          <div className={styles.left}>
-            <span>{track.name ? track.name : ""}</span>
-            <div>
-              <span>
+      <NavLink to={`/track/${track.id}`} className={styles.link}>
+        <div className={styles.container}>
+          <div className={styles.image}>
+            {track.album.images.length && (
+              <img src={track.album.images[2].url}></img>
+            )}
+          </div>
+          <div className={styles.details}>
+            <div className={styles.left}>
+              <span className={styles.trackName}>
+                {track.name ? track.name : ""}
+              </span>
+              <div className={styles.artistName}>
                 {track.artists.length > 0 &&
                   track.artists.map((artist, i) => {
                     return (
-                      <>
+                      <span key={i}>
                         {artist.name}
                         {i === track.artists.length - 1 ? "" : ", "}
-                      </>
+                      </span>
                     );
                   })}
-              </span>
-              &nbsp;&middot;&nbsp;
-              <span>{track.album.name ? track.album.name : ""}</span>
+                &nbsp;&middot;&nbsp;
+                <span>{track.album.name ? track.album.name : ""}</span>
+              </div>
             </div>
+            <span className={styles.right}>
+              {formatMinuteSeconds(track.duration_ms)}
+            </span>
           </div>
-          <span className={styles.right}>
-            {formatMinuteSeconds(track.duration_ms)}
-          </span>
         </div>
-      </div>
+      </NavLink>
     </li>
   );
 }

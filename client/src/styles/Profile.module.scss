@@ -87,14 +87,14 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 50px;
+  grid-gap: 100px;
   margin-top: 50px;
   color: $white;
 }
 
 .heading {
   @include mixins.flexBetween;
-  margin-bottom: $spacing-xs;
+  margin-bottom: $spacing-md;
 
   h3 {
     color: $white;

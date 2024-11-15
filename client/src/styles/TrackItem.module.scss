@@ -1,0 +1,57 @@
+@use "mixins";
+@use "theme" as *;
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.image {
+  width: 50px;
+  min-width: 50px;
+  margin-right: $spacing-base;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  grid-gap: 10px;
+}
+
+.trackName {
+  margin-bottom: 5px;
+  font-size: $font-size-base;
+  font-weight: 700;
+  &:hover,
+  &:focus {
+    border-bottom: 1px solid $white;
+  }
+}
+
+.artistName {
+  color: $lightGrey;
+  font-size: $font-size-sm;
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.left {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.right {
+  font-size: $font-size-sm;
+  color: $lightGrey;
+}
+
+.link {
+  width: 100%;
+  display: flex;
+}
