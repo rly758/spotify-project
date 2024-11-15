@@ -48,34 +48,34 @@ nav {
   }
 }
 
-ul {
+.navList {
   display: flex;
   flex-direction: column;
   width: 100%;
-}
 
-li {
-  color: $lightGrey;
-  font-size: 11px;
-  a {
-    display: block;
-    padding: 15px 0;
-    border-left: 5px solid transparent;
-    width: 100%;
-    height: 100%;
+  li {
+    color: $lightGrey;
+    font-size: 11px;
+    a {
+      display: block;
+      padding: 15px 0;
+      border-left: 5px solid transparent;
+      width: 100%;
+      height: 100%;
 
-    &:hover,
-    &:focus,
-    &.active {
-      color: $white;
-      background-color: $black;
-      border-left: 5px solid $offGreen;
+      &:hover,
+      &:focus,
+      &.active {
+        color: $white;
+        background-color: $black;
+        border-left: 5px solid $offGreen;
+      }
     }
-  }
 
-  svg {
-    width: 20px;
-    height: 20px;
-    margin-bottom: 7px;
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-bottom: 7px;
+    }
   }
 }

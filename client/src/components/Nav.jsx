@@ -18,7 +18,7 @@ function Nav() {
           <IconSpotify />
         </NavLink>
       </div>
-      <ul>
+      <ul className={styles.navList}>
         <li>
           <NavLink to="/profile">
             <IconProfile />
