@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Loading from "./Loading";
 import {
   getTopArtistsShort,
@@ -54,7 +54,7 @@ function TopArtists() {
     };
   }, []);
 
-  return (
+  return topArtists ? (
     <div className={styles.container}>
       <div className={styles.header}>
         <h2>Top Artists</h2>
@@ -85,6 +85,8 @@ function TopArtists() {
         )}
       </div>
     </div>
+  ) : (
+    <Loading />
   );
 }
 
