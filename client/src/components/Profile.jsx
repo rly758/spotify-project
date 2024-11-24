@@ -93,16 +93,16 @@ function Profile() {
                   <ul>
                     {topArtists.items.slice(0, 10).map((artist, i) => (
                       <li key={i}>
-                        <NavLink to={`/artist/${artist.id}`}>
+                        <Link to={`/artist/${artist.id}`}>
                           <div className={styles.artistImage}>
                             <img src={artist.images[2].url}></img>
                           </div>
-                        </NavLink>
+                        </Link>
 
                         <div className={styles.artistName}>
-                          <NavLink to={`/artist/${artist.id}`}>
+                          <Link to={`/artist/${artist.id}`}>
                             <p>{artist.name}</p>
-                          </NavLink>
+                          </Link>
                         </div>
                       </li>
                     ))}

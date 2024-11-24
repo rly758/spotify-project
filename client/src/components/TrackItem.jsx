@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 function TrackItem({ track }) {
   return (
     <li>
-      <NavLink to={`/track/${track.id}`} className={styles.link}>
+      <Link to={`/track/${track.id}`} className={styles.link}>
         <div className={styles.container}>
           <div className={styles.image}>
             {track.album.images.length && (
@@ -35,7 +35,7 @@ function TrackItem({ track }) {
             </span>
           </div>
         </div>
-      </NavLink>
+      </Link>
     </li>
   );
 }
