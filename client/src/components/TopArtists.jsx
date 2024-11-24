@@ -15,7 +15,7 @@ function TopArtists() {
 
   async function setData(range) {
     const data = await apiCalls[range]; //await to handle the *promises* in apiCalls
-    console.log(data);
+    //console.log(data);
 
     setTopArtists(data);
     setTimeRange(range);
@@ -39,7 +39,7 @@ function TopArtists() {
 
       if (!ignore) {
         setTopArtists(data);
-        console.log(data);
+        //console.log(data);
       }
     }
 
@@ -60,13 +60,19 @@ function TopArtists() {
         <h2>Top Artists</h2>
         <div className={styles.ranges}>
           <button className={styles.btn} onClick={() => setData("long")}>
-            All Time
+            <span className={timeRange === "long" ? styles.active : ""}>
+              All Time
+            </span>
           </button>
           <button className={styles.btn} onClick={() => setData("medium")}>
-            Last 6 Months
+            <span className={timeRange === "medium" ? styles.active : ""}>
+              Last 6 Months
+            </span>
           </button>
           <button className={styles.btn} onClick={() => setData("short")}>
-            Last 4 Weeks
+            <span className={timeRange === "short" ? styles.active : ""}>
+              Last 4 Weeks
+            </span>
           </button>
         </div>
       </div>
@@ -75,7 +81,7 @@ function TopArtists() {
           topArtists.items.map((artist, i) => (
             <div className={styles.artist} key={i}>
               <Link to={`/artist/${artist.id}`}>
-                <img src={artist.images[2].url}></img>
+                <img src={artist.images[1].url}></img>
                 <p>{artist.name}</p>
               </Link>
             </div>

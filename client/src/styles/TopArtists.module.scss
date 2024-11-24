@@ -1,0 +1,47 @@
+@use "mixins";
+@use "theme" as *;
+
+.header {
+  @include mixins.flexBetween;
+
+  .ranges {
+    display: flex;
+  }
+}
+
+.btn {
+  background-color: transparent;
+  color: $lightGrey;
+}
+
+.active {
+  color: $white;
+  border-bottom: 1px solid $white;
+}
+
+.artists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  margin-top: $spacing-md;
+}
+
+.artist {
+  @include mixins.flexCenter;
+  flex-direction: column;
+
+  img {
+    border-radius: 100%;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    text-align: center;
+    &:hover,
+    &:focus {
+      border-bottom: 1px solid $white;
+    }
+  }
+}
