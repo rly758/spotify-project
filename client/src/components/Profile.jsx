@@ -6,7 +6,7 @@ import Loading from "./Loading";
 
 import styles from "../styles/Profile.module.scss";
 import IconProfile from "../assets/IconProfile";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function Profile() {
   const [user, setUser] = useState(null);

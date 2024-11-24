@@ -1,5 +1,5 @@
 import styles from "../styles/TrackItem.module.scss";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function TrackItem({ track }) {
   return (
