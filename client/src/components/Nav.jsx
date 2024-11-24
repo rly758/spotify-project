@@ -20,31 +20,46 @@ function Nav() {
       </div>
       <ul className={styles.navList}>
         <li>
-          <NavLink to="/profile">
+          <NavLink
+            to="/profile"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
             <IconProfile />
             <div>Profile</div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/artists">
+          <NavLink
+            to="/artists"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
             <IconMicrophone />
             <div>Top Artists</div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/tracks">
+          <NavLink
+            to="/tracks"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
             <IconTrack />
             <div>Top Tracks</div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/recent">
+          <NavLink
+            to="/recent"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
             <IconRecent />
             <div>Recent</div>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/playlists">
+          <NavLink
+            to="/playlists"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
             <IconPlaylist />
             <div>Playlists</div>
           </NavLink>
