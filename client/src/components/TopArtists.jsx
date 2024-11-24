@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Loading from "./Loading";
 import {
   getTopArtistsShort,
@@ -39,7 +39,7 @@ function TopArtists() {
 
       if (!ignore) {
         setTopArtists(data);
-        //console.log(data);
+        console.log(data);
       }
     }
 
@@ -70,7 +70,20 @@ function TopArtists() {
           </button>
         </div>
       </div>
-      <div className={styles.artists}></div>
+      <div className={styles.artists}>
+        {topArtists ? (
+          topArtists.items.map((artist, i) => (
+            <div className={styles.artist} key={i}>
+              <Link to={`/artist/${artist.id}`}>
+                <img src={artist.images[2].url}></img>
+                <p>{artist.name}</p>
+              </Link>
+            </div>
+          ))
+        ) : (
+          <Loading />
+        )}
+      </div>
     </div>
   );
 }
