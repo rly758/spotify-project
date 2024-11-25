@@ -1,0 +1,21 @@
+@use "mixins";
+@use "theme" as *;
+
+.header {
+  @include mixins.flexBetween;
+  margin-bottom: $spacing-md;
+
+  .ranges {
+    display: flex;
+  }
+}
+
+.btn {
+  background-color: transparent;
+  color: $lightGrey;
+}
+
+.active {
+  color: $white;
+  border-bottom: 1px solid $white;
+}
