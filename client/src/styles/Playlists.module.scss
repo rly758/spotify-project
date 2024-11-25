@@ -1,0 +1,61 @@
+@use "mixins";
+@use "theme" as *;
+
+.header {
+  margin-bottom: $spacing-md;
+}
+
+.playlists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: $spacing-md;
+  width: 100%;
+}
+
+.playlist {
+  @include mixins.flexCenter;
+  flex-direction: column;
+
+  img,
+  .defaultImage {
+    width: 200px;
+    height: 200px;
+    margin-bottom: $spacing-md;
+    object-fit: cover;
+  }
+
+  .defaultImage {
+    @include mixins.flexCenter;
+    background-color: $darkGrey;
+  }
+
+  svg {
+    color: $lightGrey;
+    width: 50px;
+    height: 50px;
+  }
+
+  a {
+    @include mixins.flexCenter;
+    flex-direction: column;
+  }
+
+  .playlistName {
+    border-bottom: 1px solid transparent;
+    font-family: 700;
+
+    &:hover,
+    &:focus {
+      border-bottom: 1px solid $white;
+    }
+  }
+
+  .trackTotal {
+    margin-top: $spacing-xs;
+    text-transform: uppercase;
+    color: $lightGrey;
+    font-size: $font-size-xs;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+}
