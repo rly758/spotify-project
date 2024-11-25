@@ -16,7 +16,7 @@ function TopTracks() {
 
   async function setData(range) {
     const data = await apiCalls[range]; //await to handle the *promises* in apiCalls
-    console.log(data);
+    //console.log(data);
 
     setTopTracks(data);
     setTimeRange(range);
@@ -40,7 +40,7 @@ function TopTracks() {
 
       if (!ignore) {
         setTopTracks(data);
-        console.log(data);
+        //console.log(data);
       }
     }
 
