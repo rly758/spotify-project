@@ -1,7 +1,5 @@
-@use "mixins";
 @use "theme" as *;
 
 .header {
-  @include mixins.flexBetween;
   margin-bottom: $spacing-md;
 }
