@@ -15,7 +15,7 @@ function RecentlyPlayed() {
 
     async function fetchData() {
       const data = await getRecentlyPlayed();
-      console.log(data);
+      //console.log(data);
 
       if (!ignore) {
         setRecentlyPlayed(data);
@@ -25,7 +25,7 @@ function RecentlyPlayed() {
     try {
       fetchData();
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
 
     return () => {
