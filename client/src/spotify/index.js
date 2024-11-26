@@ -214,3 +214,23 @@ export async function getTrack(trackId) {
 
   return response;
 }
+
+export async function getAudioFeatures(trackId) {
+  const body = await fetch(
+    `https://api.spotify.com/v1/audio-features/${trackId}`,
+    await getOptions()
+  );
+  const response = await body.json();
+
+  return response;
+}
+
+export async function getAudioAnalysis(trackId) {
+  const body = await fetch(
+    `https://api.spotify.com/v1/audio-analysis/${trackId}`,
+    await getOptions()
+  );
+  const response = await body.json();
+
+  return response;
+}
