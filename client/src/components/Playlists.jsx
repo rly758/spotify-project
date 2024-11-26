@@ -15,7 +15,7 @@ function Playlists() {
 
     async function fetchData() {
       const data = await getPlaylists();
-      console.log(data);
+      //console.log(data);
 
       if (!ignore) {
         setPlaylists(data);
