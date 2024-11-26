@@ -14,7 +14,7 @@ function Artist() {
 
     async function fetchData() {
       const artist = await getArtist(artistId);
-      console.log(artist);
+      //console.log(artist);
 
       if (!ignore) {
         setArtist(artist);
