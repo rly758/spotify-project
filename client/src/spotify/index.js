@@ -177,7 +177,7 @@ export async function getRecentlyPlayed() {
 
 export async function getArtist(artistId) {
   const body = await fetch(
-    `https://api.spotify.com/v1/me/following?type=artist&ids=${artistId}`,
+    `https://api.spotify.com/v1/artists/${artistId}`,
     await getOptions()
   );
   const response = await body.json();
