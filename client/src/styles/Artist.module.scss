@@ -1,0 +1,54 @@
+@use "mixins";
+@use "theme" as *;
+
+.container {
+  @include mixins.flexCenter;
+}
+
+.artist {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  width: 100%;
+
+  img {
+    border-radius: 100%;
+    width: 300px;
+    height: 300px;
+  }
+
+  .name {
+    margin-top: $spacing-sm;
+    font-size: $font-size-xl;
+    border-bottom: 1px solid transparent;
+
+    &:hover,
+    &:focus {
+      border-bottom: 1px solid $white;
+    }
+  }
+}
+
+.details {
+  @include mixins.flexBetween;
+  margin-top: $spacing-sm;
+  column-gap: $spacing-md;
+
+  .stat {
+    @include mixins.flexCenter;
+    flex-direction: column;
+
+    .number {
+      color: $blue;
+      font-size: $font-size-lg;
+      font-weight: 700;
+    }
+
+    .label {
+      margin-top: $spacing-xs;
+      color: $lightGrey;
+      font-size: $font-size-xs;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}
