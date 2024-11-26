@@ -50,10 +50,12 @@ function Artist() {
           </div>
           <div className={styles.stat}>
             <span className={styles.number}>
-              {artist.genres.map(
-                (genre, i) =>
-                  genre + (i === artist.genres.length - 1 ? "" : ", ")
-              )}
+              {artist.genres.length
+                ? artist.genres.map(
+                    (genre, i) =>
+                      genre + (i === artist.genres.length - 1 ? "" : ", ")
+                  )
+                : "-"}
             </span>
             <span className={styles.label}>Genre</span>
           </div>
