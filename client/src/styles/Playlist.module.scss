@@ -1,0 +1,60 @@
+@use "mixins";
+@use "theme" as *;
+
+.container {
+  display: flex;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  min-width: 200px;
+  text-align: center;
+
+  .name {
+    margin: 0;
+    font-size: $font-size-xl;
+  }
+
+  img,
+  .defaultImage {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .defaultImage {
+    @include mixins.flexCenter;
+    background-color: $darkGrey;
+  }
+
+  svg {
+    color: $lightGrey;
+    width: 50px;
+    height: 50px;
+  }
+
+  .description,
+  .total {
+    color: $lightGrey;
+  }
+
+  .owner {
+    margin-bottom: $spacing-xs;
+    color: $white;
+    font-size: $font-size-md;
+  }
+
+  .total {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: $spacing-sm;
+    font-size: $font-size-sm;
+  }
+}
+
+.right {
+  flex-grow: 1;
+  margin: 0 50px;
+}
