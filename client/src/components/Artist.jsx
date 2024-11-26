@@ -12,7 +12,7 @@ function Artist() {
   useEffect(() => {
     let ignore = false;
 
-    async function fetchData() {
+    async function fetchData(artistId) {
       const artist = await getArtist(artistId);
       //console.log(artist);
 
@@ -22,7 +22,7 @@ function Artist() {
     }
 
     try {
-      fetchData();
+      fetchData(artistId);
     } catch (error) {
       console.log(error);
     }
