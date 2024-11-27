@@ -92,7 +92,9 @@ function FeatureChart(props) {
               },
             },
           },
+          maintainAspectRatio: true,
           aspectRatio: 1,
+          responsive: true,
         },
       });
     }

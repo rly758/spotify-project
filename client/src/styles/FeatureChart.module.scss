@@ -1,4 +1,7 @@
 .container {
+  display: flex;
+  justify-content: center;
+  position: relative;
   width: 100%;
-  max-width: 700px;
+  height: 90vh;
 }
