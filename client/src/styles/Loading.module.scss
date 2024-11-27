@@ -1,0 +1,57 @@
+@use "theme" as *;
+@use "mixins";
+
+.container {
+  @include mixins.flexCenter;
+  width: 100%;
+  height: 90vh;
+}
+
+.bars {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 40px;
+}
+
+.bar {
+  margin: 0 2px;
+  width: 10px;
+  height: 5px;
+  background-color: $grey;
+  animation-name: play;
+  animation-duration: 0.3s;
+  animation-play-state: running;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes play {
+  from {
+    height: 10px;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+.bar:nth-child(1) {
+  animation-delay: 0.25s;
+}
+
+.bar:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.bar:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.bar:nth-child(4) {
+  animation-delay: 0.1s;
+}
+
+.bar:nth-child(5) {
+  animation-delay: 0.2s;
+}
