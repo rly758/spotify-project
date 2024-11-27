@@ -1,0 +1,86 @@
+@use "mixins";
+@use "theme" as *;
+
+.container {
+  padding: $spacing-md;
+}
+
+.track {
+  display: flex;
+
+  .left {
+    max-width: 250px;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    margin-left: $spacing-lg;
+
+    .name {
+      font-size: 36px;
+    }
+
+    .artists {
+      margin-bottom: $spacing-xs;
+      color: $lightestGrey;
+      font-size: $font-size-lg;
+      font-weight: 600;
+    }
+
+    .album {
+      color: $lightestGrey;
+      font-size: 16px;
+    }
+
+    .btn {
+      display: inline block;
+      margin-top: $spacing-lg;
+      padding: 11px 24px;
+      width: max-content;
+      background-color: $green;
+      color: $white;
+      border-radius: 50px;
+      font-size: $font-size-xs;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.25s cubic-bezier(0.3, 0, 0.4, 1);
+
+      &:hover,
+      &:focus {
+        background-color: $offGreen;
+      }
+    }
+  }
+}
+
+.features {
+  margin-top: $spacing-lg;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  width: 100%;
+  text-align: center;
+  border-top: 1px solid $grey;
+  border-left: 1px solid $grey;
+
+  .feature {
+    @include mixins.flexCenter;
+    flex-direction: column;
+    border-bottom: 1px solid $grey;
+    border-right: 1px solid $grey;
+    padding: $spacing-sm 0;
+
+    .value {
+      margin-bottom: $spacing-xs;
+      font-size: $font-size-xl;
+      font-weight: 700;
+      color: $white;
+    }
+
+    .label {
+      font-size: $font-size-sm;
+      color: $lightGrey;
+    }
+  }
+}
