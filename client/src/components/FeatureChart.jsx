@@ -32,7 +32,7 @@ function FeatureChart(props) {
       const data = Object.values(dataset);
 
       chart = new Chart(ctx, {
-        type: "bar",
+        type: props.type,
         data: {
           labels,
           datasets: [

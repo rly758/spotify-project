@@ -117,7 +117,7 @@ function Track() {
           <span className={styles.label}>Segments</span>
         </div>
       </div>
-      <FeatureChart features={features} />
+      <FeatureChart features={features} type="bar" />
     </div>
   ) : (
     <Loading />
