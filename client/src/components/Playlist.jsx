@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import IconTrack from "../assets/IconTrack";
 import TrackItem from "./TrackItem";
-import { getPlaylist } from "../spotify";
+import FeatureChart from "./FeatureChart";
+import { getPlaylist, getAudioFeatures } from "../spotify";
 
 import styles from "../styles/Playlist.module.scss";
 
@@ -16,7 +17,7 @@ function Playlist() {
 
     async function fetchData(trackId) {
       const playlist = await getPlaylist(playlistId);
-      console.log(playlist);
+      //const features = await getAudioFeatures(playlistId);
 
       if (!ignore) {
         setPlaylist(playlist);
@@ -55,9 +56,11 @@ function Playlist() {
 
       <div className={styles.right}>
         <ul>
-          {playlist.tracks.items.map(({ track }, i) => (
-            <TrackItem track={track} key={i} />
-          ))}
+          {playlist.tracks.items
+            .filter((item) => item.track !== null)
+            .map(({ track }, i) => (
+              <TrackItem track={track} key={i} />
+            ))}
         </ul>
       </div>
     </div>
