@@ -39,23 +39,25 @@ function Playlists() {
         <h2>Your Playlists</h2>
       </div>
       <div className={styles.playlists}>
-        {playlists.items.map((playlist, i) => (
-          <div className={styles.playlist} key={i}>
-            <Link to={`/playlist/${playlist.id}`}>
-              {playlist.images ? (
-                <img src={playlist.images[0].url}></img>
-              ) : (
-                <div className={styles.defaultImage}>
-                  <IconTrack />
-                </div>
-              )}
-              <span className={styles.playlistName}>{playlist.name}</span>
-            </Link>
-            <span className={styles.trackTotal}>
-              {playlist.tracks.total} Tracks
-            </span>
-          </div>
-        ))}
+        {playlists.items
+          .filter((playlist) => playlist !== null)
+          .map((playlist, i) => (
+            <div className={styles.playlist} key={i}>
+              <Link to={`/playlist/${playlist.id}`}>
+                {playlist.images ? (
+                  <img src={playlist.images[0].url}></img>
+                ) : (
+                  <div className={styles.defaultImage}>
+                    <IconTrack />
+                  </div>
+                )}
+                <span className={styles.playlistName}>{playlist.name}</span>
+              </Link>
+              <span className={styles.trackTotal}>
+                {playlist.tracks.total} Tracks
+              </span>
+            </div>
+          ))}
       </div>
     </div>
   ) : (
