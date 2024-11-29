@@ -79,7 +79,7 @@ function TopArtists() {
       <div className={styles.artists}>
         {topArtists ? (
           topArtists.items.map((artist, i) => (
-            <Link to={`/artist/${artist.id}`}>
+            <Link to={`/artist/${artist.id}`} key={i}>
               <div className={styles.artist} key={i}>
                 <img src={artist.images[1].url}></img>
                 <span className={styles.name}>{artist.name}</span>
