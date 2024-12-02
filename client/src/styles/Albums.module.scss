@@ -1,0 +1,41 @@
+@use "mixins";
+@use "theme" as *;
+
+.container {
+  width: 100%;
+  margin-top: $spacing-lg;
+}
+
+.albums {
+  margin-top: $spacing-md;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(200px, 1fr));
+  column-gap: $spacing-sm;
+  row-gap: $spacing-sm;
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.album {
+  @include mixins.flexCenter;
+  flex-direction: column;
+  text-align: center;
+
+  .name {
+    margin: $spacing-sm;
+    width: calc(90%);
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid transparent;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
