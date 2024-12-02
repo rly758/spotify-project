@@ -6,11 +6,11 @@ function TrackItem({ track }) {
     <li>
       <Link to={`/track/${track.id}`} className={styles.link}>
         <div className={styles.container}>
-          <div className={styles.image}>
-            {track.album.images.length && (
+          {track?.album?.images.length && (
+            <div className={styles.image}>
               <img src={track.album.images[2].url}></img>
-            )}
-          </div>
+            </div>
+          )}
           <div className={styles.details}>
             <div className={styles.left}>
               <span className={styles.trackName}>
@@ -26,8 +26,13 @@ function TrackItem({ track }) {
                       </span>
                     );
                   })}
-                &nbsp;&middot;&nbsp;
-                <span>{track.album.name ? track.album.name : ""}</span>
+                <span>
+                  {track?.album?.name ? (
+                    <>&nbsp;&middot;&nbsp;{track.album.name}</>
+                  ) : (
+                    ""
+                  )}
+                </span>
               </div>
             </div>
             <span className={styles.right}>

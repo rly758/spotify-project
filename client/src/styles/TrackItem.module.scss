@@ -3,8 +3,7 @@
 
 .container {
   width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
+  display: flex;
   align-items: center;
   margin-bottom: $spacing-md;
 }
@@ -16,9 +15,9 @@
 }
 
 .details {
-  display: grid;
-  grid-template-columns: 1fr max-content;
-  grid-gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .trackName {
