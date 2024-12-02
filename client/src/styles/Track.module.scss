@@ -35,6 +35,7 @@
 
     .btn {
       @include mixins.greenBtn;
+      margin-top: $spacing-lg;
     }
   }
 }
