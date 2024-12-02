@@ -1,3 +1,5 @@
+@use "theme" as *;
+
 @mixin flexCenter {
   display: flex;
   justify-content: center;
@@ -8,4 +10,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@mixin greenBtn {
+  display: inline-block;
+  margin-top: $spacing-lg;
+  padding: 11px 24px;
+  width: max-content;
+  white-space: nowrap;
+  background-color: $green;
+  color: $white;
+  border-radius: 50px;
+  font-size: $font-size-xs;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.25s cubic-bezier(0.3, 0, 0.4, 1);
+
+  &:hover,
+  &:focus {
+    background-color: $offGreen;
+  }
 }
