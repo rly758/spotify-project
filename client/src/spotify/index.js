@@ -225,9 +225,9 @@ export async function getArtistAlbums(artistId) {
   return response;
 }
 
-export async function getAlbumTracks(albumId) {
+export async function getAlbum(albumId) {
   const body = await fetch(
-    `https://api.spotify.com/v1/albums/${albumId}/tracks`,
+    `https://api.spotify.com/v1/albums/${albumId}`,
     await getOptions()
   );
   const response = await body.json();
