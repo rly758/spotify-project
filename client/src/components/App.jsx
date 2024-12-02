@@ -13,6 +13,7 @@ import Track from "./Track";
 import Playlists from "./Playlists";
 import Playlist from "./Playlist";
 import RecentlyPlayed from "./RecentlyPlayed";
+import Album from "./Album";
 
 import "../styles/global.scss";
 import "../styles/App.scss";
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
           {
             path: "playlist/:playlistId",
             element: <Playlist />, //see tracks within a playlist
+          },
+          {
+            path: "album/:albumId",
+            element: <Album />, //see tracks with an album
           },
         ],
       },
