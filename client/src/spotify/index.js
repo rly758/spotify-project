@@ -214,3 +214,23 @@ export async function getTrack(trackId) {
 
   return response;
 }
+
+export async function getArtistAlbums(artistId) {
+  const body = await fetch(
+    `https://api.spotify.com/v1/arists/${artistId}/albums`,
+    await getOptions()
+  );
+  const response = await body.json();
+
+  return response;
+}
+
+export async function getAlbumTracks(albumId) {
+  const body = await fetch(
+    `https://api.spotify.com/v1/albums/${albumId}/tracks`,
+    await getOptions()
+  );
+  const response = await body.json();
+
+  return response;
+}
