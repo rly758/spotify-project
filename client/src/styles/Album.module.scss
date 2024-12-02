@@ -1,0 +1,81 @@
+@use "mixins";
+@use "theme" as *;
+
+.top {
+  display: flex;
+  img {
+    width: 250px;
+    height: 250px;
+    margin-right: $spacing-md;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: $font-size-xxl;
+  }
+
+  .artists {
+    font-size: $font-size-md;
+
+    a {
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .btn {
+    @include mixins.greenBtn;
+    margin-top: $spacing-md;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .info {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  padding-top: $spacing-md;
+  margin-right: $spacing-lg;
+
+  .trackInfo {
+    margin-top: $spacing-sm;
+    color: $lightGrey;
+  }
+}
+
+.right {
+  @include mixins.flexCenter;
+}
+
+.tracks {
+  margin-top: $spacing-md;
+}
+
+.popularity {
+  @include mixins.flexCenter;
+  flex-direction: column;
+
+  .value {
+    color: $blue;
+    font-size: $font-size-xxl;
+    font-weight: 700;
+  }
+  .label {
+    color: $lightGrey;
+    text-transform: uppercase;
+    font-size: $font-size-sm;
+    letter-spacing: 1px;
+  }
+}
