@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import { getArtist } from "../spotify";
+import Albums from "./Albums";
 
 import styles from "../styles/Artist.module.scss";
 
@@ -64,6 +65,9 @@ function Artist() {
             <span className={styles.label}>Popularity</span>
           </div>
         </div>
+      </div>
+      <div className={styles.albums}>
+        <Albums />
       </div>
     </div>
   ) : (

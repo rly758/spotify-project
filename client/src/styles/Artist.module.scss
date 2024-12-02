@@ -3,6 +3,11 @@
 
 .container {
   @include mixins.flexCenter;
+  flex-direction: column;
+}
+
+.albums {
+  width: 100%;
 }
 
 .artist {
