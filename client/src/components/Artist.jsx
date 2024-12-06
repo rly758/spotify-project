@@ -66,6 +66,13 @@ function Artist() {
             <span className={styles.label}>Popularity</span>
           </div>
         </div>
+        <a
+          className={styles.btn}
+          href={artist.external_urls.spotify}
+          target="_blank"
+        >
+          Play on Spotify
+        </a>
       </div>
       <div className={styles.tracks}>
         <ArtistTopTracks />

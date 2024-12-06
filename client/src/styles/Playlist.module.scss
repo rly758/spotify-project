@@ -52,6 +52,11 @@
     margin-bottom: $spacing-sm;
     font-size: $font-size-sm;
   }
+
+  .btn {
+    @include mixins.greenBtn;
+    margin-bottom: $spacing-sm;
+  }
 }
 
 .right {

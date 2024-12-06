@@ -50,6 +50,13 @@ function Playlist() {
         </a>
         <span className={styles.owner}>By {playlist.owner.display_name}</span>
         <span className={styles.total}>{playlist.tracks.total} Tracks</span>
+        <a
+          className={styles.btn}
+          href={playlist.external_urls.spotify}
+          target="_blank"
+        >
+          Play on Spotify
+        </a>
         <p className={styles.description}>{playlist.description}</p>
       </div>
 
