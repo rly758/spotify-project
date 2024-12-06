@@ -1,0 +1,11 @@
+@use "mixins";
+@use "theme" as *;
+
+.container {
+  width: 100%;
+}
+
+.tracks {
+  width: 100%;
+  margin-top: $spacing-md;
+}
