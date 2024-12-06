@@ -5,6 +5,9 @@ import {
   getTopTracksShort,
   getTopTracksMedium,
   getTopTracksLong,
+  getUser,
+  postNewPlaylist,
+  postPlaylistTracks,
 } from "../spotify";
 
 import styles from "../styles/TopTracks.module.scss";
@@ -12,11 +15,57 @@ import styles from "../styles/TopTracks.module.scss";
 function TopTracks() {
   const [topTracks, setTopTracks] = useState(null);
   const [timeRange, setTimeRange] = useState("long");
+  const [trackUris, setTrackUris] = useState([]);
+  const [user, setUser] = useState(null);
+
+  async function handleClick(userId) {
+    let name = "My Top 50 Tracks - ";
+    let description = "This playlist was created on ";
+
+    switch (timeRange) {
+      case "long":
+        name += "All Time";
+        break;
+      case "medium":
+        name += "Last 6 Months";
+        break;
+      case "short":
+        name += "Last 4 Weeks";
+        break;
+      default:
+        console.log("Invalid timeRange");
+    }
+
+    const date = new Date();
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    description += `${date.toLocaleDateString(undefined, options)}`;
+
+    const postNewPlaylistBody = {
+      name,
+      description,
+    };
+    const newPlaylist = await postNewPlaylist(userId, postNewPlaylistBody);
+    const newPlaylistUrl = newPlaylist.external_urls.spotify;
+
+    const postPlaylistTracksBody = { uris: trackUris };
+    const _ = await postPlaylistTracks(newPlaylist.id, postPlaylistTracksBody);
+    if (_.snapshot_id) {
+      window.open(newPlaylistUrl, "_blank");
+    }
+  }
 
   async function setData(range) {
     const data = await apiCalls[range]; //await to handle the *promises* in apiCalls
-    //console.log(data);
+    //console.log("data: ", data);
+    const uris = data.items.map((track) => track.uri);
+    //console.log("uris: ", uris);
 
+    setTrackUris(uris);
     setTopTracks(data);
     setTimeRange(range);
   }
@@ -36,9 +85,15 @@ function TopTracks() {
 
     async function fetchData() {
       const data = await getTopTracksLong();
+      //console.log("data: ", data);
+      const uris = data.items.map((track) => track.uri);
+      //console.log("uris: ", uris);
+      const user = await getUser();
 
       if (!ignore) {
+        setUser(user);
         setTopTracks(data);
+        setTrackUris(uris);
         //console.log(data);
       }
     }
@@ -58,6 +113,12 @@ function TopTracks() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h2>Top Tracks</h2>
+        <button
+          className={styles.greenBtn}
+          onClick={() => handleClick(user.id)}
+        >
+          Create Playlist
+        </button>
         <div className={styles.ranges}>
           <button className={styles.btn} onClick={() => setData("long")}>
             <span className={timeRange === "long" ? styles.active : ""}>
