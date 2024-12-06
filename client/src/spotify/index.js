@@ -237,8 +237,48 @@ export async function getAlbum(albumId) {
 
 export async function getArtistTopTracks(artistId) {
   const body = await fetch(
-    `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=ES`,
+    `https://api.spotify.com/v1/artists/${artistId}/top-tracks`,
     await getOptions()
+  );
+  const response = await body.json();
+
+  return response;
+}
+
+export async function postNewPlaylist(userId, postBody) {
+  const token = await getAccessToken();
+
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(postBody),
+  };
+
+  const body = await fetch(
+    `https://api.spotify.com/v1/users/${userId}/playlists`,
+    options
+  );
+  const response = await body.json();
+
+  return response;
+}
+
+export async function postPlaylistTracks(playlistId, postBody) {
+  const token = await getAccessToken();
+
+  const options = {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(postBody),
+  };
+
+  const body = await fetch(
+    `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+    options
   );
   const response = await body.json();
 
