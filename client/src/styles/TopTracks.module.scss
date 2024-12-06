@@ -10,6 +10,10 @@
   }
 }
 
+.greenBtn {
+  @include mixins.greenBtn;
+}
+
 .btn {
   background-color: transparent;
   color: $lightGrey;
