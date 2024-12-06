@@ -234,3 +234,13 @@ export async function getAlbum(albumId) {
 
   return response;
 }
+
+export async function getArtistTopTracks(artistId) {
+  const body = await fetch(
+    `https://api.spotify.com/v1/artists/${artistId}/top-tracks?market=ES`,
+    await getOptions()
+  );
+  const response = await body.json();
+
+  return response;
+}
