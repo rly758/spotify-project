@@ -15,7 +15,7 @@ function ArtistTopTracks() {
 
     async function fetchData(artistId) {
       const topTracks = await getArtistTopTracks(artistId);
-      console.log(topTracks);
+      //console.log(topTracks);
 
       if (!ignore) {
         setTopTracks(topTracks);
