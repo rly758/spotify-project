@@ -19,7 +19,7 @@
   }
 }
 
-.album {
+.album > a {
   @include mixins.flexCenter;
   flex-direction: column;
   text-align: center;
