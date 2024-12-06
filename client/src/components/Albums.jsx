@@ -14,7 +14,7 @@ function Albums() {
 
     async function fetchData(artistId) {
       const artistAlbums = await getArtistAlbums(artistId);
-      console.log(artistAlbums);
+      //console.log(artistAlbums);
 
       if (!ignore) {
         setArtistAlbums(artistAlbums);
@@ -34,15 +34,15 @@ function Albums() {
 
   return artistAlbums ? (
     <div className={styles.container}>
-      <h1>Albums</h1>
+      <h2>Albums</h2>
       <div className={styles.albums}>
         {artistAlbums.items.map((album, i) => (
-          <Link to={`/album/${album.id}`}>
-            <div className={styles.album} key={i}>
+          <div className={styles.album} key={i}>
+            <Link to={`/album/${album.id}`}>
               <img src={album.images[1].url}></img>
               <span className={styles.name}>{album.name}</span>
-            </div>
-          </Link>
+            </Link>
+          </div>
         ))}
       </div>
     </div>
