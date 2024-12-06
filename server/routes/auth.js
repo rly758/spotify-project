@@ -31,7 +31,7 @@ router.get("/login", async (req, res) => {
 
   const authUrl = new URL("https://accounts.spotify.com/authorize");
   const scope =
-    "user-read-private user-read-recently-played user-top-read user-follow-read playlist-read-private playlist-read-collaborative";
+    "user-read-private user-read-recently-played user-top-read user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public";
 
   const params = {
     response_type: "code",
