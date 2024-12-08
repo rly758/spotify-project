@@ -1,46 +1,54 @@
 import styles from "../styles/TrackItem.module.scss";
 import { Link } from "react-router-dom";
+import React from "react";
 
 function TrackItem({ track }) {
   return (
     <li>
-      <Link to={`/track/${track.id}`} className={styles.link}>
-        <div className={styles.container}>
-          {track?.album?.images.length && (
-            <div className={styles.image}>
-              <img src={track.album.images[2].url}></img>
-            </div>
-          )}
-          <div className={styles.details}>
-            <div className={styles.left}>
+      <div className={styles.container}>
+        {track?.album?.images.length && (
+          <div className={styles.image}>
+            <img src={track.album.images[2].url}></img>
+          </div>
+        )}
+        <div className={styles.details}>
+          <div className={styles.left}>
+            <Link to={`/track/${track.id}`} className={styles.link}>
               <span className={styles.trackName}>
                 {track.name ? track.name : ""}
               </span>
-              <div className={styles.artistName}>
-                {track.artists.length > 0 &&
-                  track.artists.map((artist, i) => {
-                    return (
-                      <span key={i}>
-                        {artist.name}
-                        {i === track.artists.length - 1 ? "" : ", "}
-                      </span>
-                    );
-                  })}
-                <span>
-                  {track?.album?.name ? (
-                    <>&nbsp;&middot;&nbsp;{track.album.name}</>
-                  ) : (
-                    ""
-                  )}
-                </span>
-              </div>
+            </Link>
+            <div>
+              {track.artists.length > 0 &&
+                track.artists.map((artist, i) => {
+                  return (
+                    <React.Fragment key={i}>
+                      <Link to={`/artist/${track.artists[i].id}`}>
+                        <span className={styles.artistName} key={i}>
+                          {artist.name}
+                        </span>
+                      </Link>
+                      {i === track.artists.length - 1 ? "" : ", "}
+                    </React.Fragment>
+                  );
+                })}
+              {track?.album?.name ? (
+                <>
+                  &nbsp;&middot;&nbsp;
+                  <Link to={`/album/${track.album.id}`}>
+                    <span className={styles.albumName}>{track.album.name}</span>
+                  </Link>
+                </>
+              ) : (
+                ""
+              )}
             </div>
-            <span className={styles.right}>
-              {formatMinuteSeconds(track.duration_ms)}
-            </span>
           </div>
+          <span className={styles.right}>
+            {formatMinuteSeconds(track.duration_ms)}
+          </span>
         </div>
-      </Link>
+      </div>
     </li>
   );
 }
