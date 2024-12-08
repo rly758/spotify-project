@@ -95,7 +95,7 @@
 
 .heading {
   @include mixins.flexBetween;
-  margin-bottom: $spacing-md;
+  margin-bottom: $spacing-base;
 
   h3 {
     color: $white;
