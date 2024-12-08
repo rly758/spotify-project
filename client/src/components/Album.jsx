@@ -15,7 +15,7 @@ function Album() {
 
     async function fetchData(albumId) {
       const album = await getAlbum(albumId);
-      console.log(album);
+      //console.log(album);
 
       if (!ignore) {
         setAlbum(album);
