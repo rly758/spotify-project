@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import { getTrack } from "../spotify";
@@ -41,16 +42,27 @@ function Track() {
         <div className={styles.right}>
           <h1 className={styles.name}>{track.name}</h1>
           <span className={styles.artists}>
-            {track.artists.map(
-              (artist, i) =>
-                artist.name + (i === track.artists.length - 1 ? "" : ", ")
-            )}
+            {track.artists.map((artist, i) => (
+              <React.Fragment key={i}>
+                <Link
+                  to={`/artist/${artist.id}`}
+                  key={i}
+                  className={styles.artistName}
+                >
+                  {artist.name}
+                </Link>
+                {i === track.artists.length - 1 ? "" : ", "}
+              </React.Fragment>
+            ))}
           </span>
-          <Link to={`/album/${track.album.id}`}>
-            <span className={styles.album}>
-              {track.album.name} &middot; {getYear(track.album.release_date)}
-            </span>
-          </Link>
+
+          <span className={styles.album}>
+            <Link to={`/album/${track.album.id}`} className={styles.albumName}>
+              {track.album.name}
+            </Link>{" "}
+            &middot; {getYear(track.album.release_date)}
+          </span>
+
           <a
             href={track.external_urls.spotify}
             target="_blank"
