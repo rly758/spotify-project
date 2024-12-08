@@ -135,11 +135,18 @@
 }
 
 .left {
-  li {
+  .artistItem {
+    height: 60px;
     display: flex;
     align-items: center;
-    margin-bottom: $spacing-md;
+    padding: 0 $spacing-sm;
+    border-radius: 5px;
     color: $white;
+
+    &:hover,
+    &:focus {
+      background-color: $hoverGrey;
+    }
   }
 }
 

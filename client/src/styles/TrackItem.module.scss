@@ -12,7 +12,7 @@
 
   &:hover,
   &:focus {
-    background-color: hsla(0, 0%, 100%, 0.1);
+    background-color: $hoverGrey;
   }
 }
 
