@@ -92,7 +92,7 @@ function Profile() {
                 {topArtists ? (
                   <ul>
                     {topArtists.items.slice(0, 10).map((artist, i) => (
-                      <li key={i}>
+                      <li key={i} className={styles.artistItem}>
                         <Link to={`/artist/${artist.id}`}>
                           <div className={styles.artistImage}>
                             <img src={artist.images[2].url}></img>
