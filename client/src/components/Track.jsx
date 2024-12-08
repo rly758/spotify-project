@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import { getTrack } from "../spotify";
 
@@ -46,11 +46,11 @@ function Track() {
                 artist.name + (i === track.artists.length - 1 ? "" : ", ")
             )}
           </span>
-          <a href={track.album.external_urls.spotify} target="_blank">
+          <Link to={`/album/${track.album.id}`}>
             <span className={styles.album}>
               {track.album.name} &middot; {getYear(track.album.release_date)}
             </span>
-          </a>
+          </Link>
           <a
             href={track.external_urls.spotify}
             target="_blank"
