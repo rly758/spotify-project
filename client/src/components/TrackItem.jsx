@@ -8,7 +8,9 @@ function TrackItem({ track }) {
       <div className={styles.container}>
         {track?.album?.images.length && (
           <div className={styles.image}>
-            <img src={track.album.images[2].url}></img>
+            <Link to={`/track/${track.id}`} className={styles.link}>
+              <img src={track.album.images[2].url}></img>
+            </Link>
           </div>
         )}
         <div className={styles.details}>
